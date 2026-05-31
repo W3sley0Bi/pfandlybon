@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Pfand for you — Pfandly</title>
+  <meta name="description" content="A friend sent you a Pfand deposit. Show the barcode at any self-checkout to claim it, or get Pfandly to save it.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <meta property="og:title" content="A friend sent you a Pfand 🍾">
+  <meta property="og:description" content="Show the barcode at any self-checkout to claim the deposit.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pfandlybon.com/assets/img/icon.png">
+  <meta name="theme-color" content="#FBF7EF">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  <style>
+    .amount {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 8vw, 4rem);
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin: .5rem 0 .4rem;
+    }
+    .bon-meta {
+      font-size: 1.05rem;
+      color: var(--grey);
+      margin-bottom: 1.5rem;
+    }
+    .bon-meta strong { color: var(--ink); }
+    .barcode-panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: 1rem;
+    }
+    .barcode-panel svg { max-width: 100%; }
+    .barcode-fallback {
+      font-family: monospace;
+      font-size: 1.4rem;
+      letter-spacing: .12em;
+      color: var(--ink);
+      word-break: break-all;
+      text-align: center;
+      padding: 1rem;
+    }
+    .redeem-caption {
+      font-size: .9rem;
+      color: var(--grey);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .get-app-label {
+      font-size: .9rem;
+      color: var(--grey);
+      text-align: center;
+      margin: 1.2rem 0 .8rem;
+    }
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      align-items: stretch;
+    }
+    .badges--center {
+      justify-content: center;
+    }
+    #bon-card { max-width: 520px; margin-inline: auto; }
+    #error-card { max-width: 520px; margin-inline: auto; display: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a class="nav__brand" href="/">
+        <img src="/assets/img/icon.png" alt="Pfandly icon">
+        Pfandly
+      </a>
+      <div class="nav__links">
+    <a href="/#how">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/support.html">Support</a>
+    <a href="/privacy.html">Privacy</a>
+    <a class="btn btn--primary" href="/#get">Get the app</a>
+  </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="container section--tight">
+
+    <!-- BON CARD (shown when fragment is valid) -->
+    <div id="bon-card" class="card">
+      <div style="text-align:center;">
+        <span class="pill">A friend sent you a Pfand 🍾</span>
+        <div class="amount" id="bon-amount">€0.00</div>
+        <p class="bon-meta" id="bon-meta">from <strong id="bon-store"></strong></p>
+      </div>
+
+      <div class="barcode-panel">
+        <svg id="barcode"></svg>
+        <div id="barcode-fallback" class="barcode-fallback hidden"></div>
+      </div>
+
+      <p class="redeem-caption">Show this barcode at any self-checkout to redeem the deposit.</p>
+
+      <div class="action-buttons">
+        <a class="btn btn--primary btn--lg" id="openApp" href="#">Open in Pfandly</a>
+      </div>
+
+      <p class="get-app-label">Don't have the app? Get Pfandly to save &amp; manage it.</p>
+
+      <div class="badges badges--center">
+        <!-- App Store -->
+        <a class="badge" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span>
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </span>
+        </a>
+        <!-- Google Play -->
+        <a class="badge" href="https://play.google.com/store/apps/details?id=com.wyo.pfandly" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.35.2.74.24 1.1.14l.06-.03 10.5-6.07-2.3-2.3-9.36 8.26zm-1.1-20.5C1.93 3.6 2 3.97 2.2 4.27l9.44 9.44-2.28 2.28L2.08 5.54c-.2-.3-.18-.67.0-1.28zM20.3 10.3l-2.15-1.24L15.6 11.6l2.28 2.28 2.44-1.41c.7-.4.7-1.77-.02-2.17zM4.28.1C3.92 0 3.53.04 3.18.24L12.54 9.6l2.3-2.3L4.34.13l-.06-.03z"/></svg>
+          <span>
+            <small>Get it on</small>
+            <strong>Google Play</strong>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ERROR CARD (shown on bad/missing fragment) -->
+    <div id="error-card" class="card" style="text-align:center;">
+      <div class="chip" style="margin-inline:auto;">⚠️</div>
+      <h2 style="margin-bottom:.5rem;">This link looks broken</h2>
+      <p class="muted">The link appears to be empty or invalid. Ask your friend to share it again from the Pfandly app.</p>
+      <a class="btn btn--primary btn--lg" href="/" style="margin-top:1rem;">Go to Pfandly</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <a class="nav__brand" href="/">
+        <img src="/assets/img/icon.png" alt="Pfandly icon">
+        Pfandly
+      </a>
+      <nav class="footer__links">
+        <a href="/">Home</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:support@pfandlybon.com">Contact</a>
+      </nav>
+      <small>Made with ❤️ in Berlin · © 2026 Pfandly</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Step 1: Read location.hash, strip leading '#'.
+  var rawHash = location.hash.slice(1);
+
+  var bonCard   = document.getElementById('bon-card');
+  var errorCard = document.getElementById('error-card');
+
+  function showError() {
+    bonCard.style.display  = 'none';
+    errorCard.style.display = '';
+  }
+
+  if (!rawHash) {
+    showError();
+  } else {
+    try {
+      // Step 2: base64url → base64 → binary string → UTF-8 → JSON
+      var b64 = rawHash.replace(/-/g, '+').replace(/_/g, '/');
+      // Pad to a multiple of 4
+      while (b64.length % 4) b64 += '=';
+      var jsonStr = decodeURIComponent(escape(atob(b64)));
+      var bon = JSON.parse(jsonStr);
+
+      // Step 3: Validate required fields
+      if (
+        typeof bon.s !== 'string' || !bon.s ||
+        typeof bon.v !== 'number' ||
+        typeof bon.c !== 'string' || !bon.c
+      ) {
+        showError();
+      } else {
+
+        // Step 4: Fill in the amount, store, and optional metadata
+        var amountFmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(bon.v);
+        document.getElementById('bon-amount').textContent = amountFmt;
+        document.getElementById('bon-store').textContent  = bon.s;
+
+        var metaParts = ['from  ']; // thin separator — set via DOM below
+        var metaEl    = document.getElementById('bon-meta');
+        metaEl.innerHTML = 'from <strong>' + escHtml(bon.s) + '</strong>';
+        if (bon.n) metaEl.innerHTML += ' &nbsp;·&nbsp; ' + bon.n + ' bottle' + (bon.n !== 1 ? 's' : '');
+        if (bon.d) metaEl.innerHTML += ' &nbsp;·&nbsp; ' + escHtml(bon.d);
+
+        // Step 5: Render barcode
+        var fmtMap = {
+          CODE128: 'CODE128', EAN13: 'EAN13', EAN8: 'EAN8',
+          CODE39:  'CODE39',  ITF: 'ITF',     ITF14: 'ITF14',
+          UPC:     'UPC',     codabar: 'codabar'
+        };
+        var bcFmt = fmtMap[bon.f] || 'CODE128';
+
+        try {
+          JsBarcode('#barcode', String(bon.c), {
+            format:       bcFmt,
+            width:        2,
+            height:       90,
+            displayValue: true,
+            fontSize:     16,
+            margin:       8
+          });
+        } catch (e1) {
+          // Fallback to CODE128
+          try {
+            JsBarcode('#barcode', String(bon.c), {
+              format:       'CODE128',
+              width:        2,
+              height:       90,
+              displayValue: true,
+              fontSize:     16,
+              margin:       8
+            });
+          } catch (e2) {
+            // Last resort: plain text code
+            document.getElementById('barcode').style.display = 'none';
+            var fb = document.getElementById('barcode-fallback');
+            fb.textContent = bon.c;
+            fb.classList.remove('hidden');
+          }
+        }
+
+        // Step 6: Set the deep-link button href
+        document.getElementById('openApp').href = 'pfandly://i#' + rawHash;
+      }
+    } catch (err) {
+      // Parse / decode error
+      showError();
+    }
+  }
+
+  // Minimal HTML-escape helper (for store name / date coming from the URL)
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+</script>
+
+</body>
+</html>

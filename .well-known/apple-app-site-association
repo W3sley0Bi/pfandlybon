@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TEAMID.com.wyo.pfandly"],
+        "components": [
+          { "/": "/i/*", "comment": "Pfandly share/claim links open in the app" },
+          { "/": "/i" }
+        ]
+      }
+    ]
+  }
+}
