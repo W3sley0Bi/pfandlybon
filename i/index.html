@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>window.SITE_DEPTH=1;</script>
-<script>(function(){var d=window.SITE_DEPTH||0,r="/";if(location.protocol==="file:"){r=d>0?Array(d+1).join("../"):"./";}else if(location.hostname.slice(-10)===".github.io"){var s=location.pathname.split("/")[1]||"";r=s?"/"+s+"/":"/";}document.write("<base href=""+r+"">");})();</script>
   <title>A Pfand for you — Pfandly</title>
   <meta name="description" content="A friend sent you a Pfand deposit. Show the barcode at any self-checkout to claim it, or get Pfandly to save it.">
   <meta name="robots" content="noindex">
-  <link rel="icon" href="assets/img/favicon.png">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+<script src="../assets/js/site.js"></script>
   <meta property="og:title" content="A friend sent you a Pfand 🍾">
   <meta property="og:description" content="Show the barcode at any self-checkout to claim the deposit.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://pfandlybon.com/assets/img/icon.png">
   <meta name="theme-color" content="#FBF7EF">
-  <script src="assets/js/jsbarcode.all.min.js"></script>
+  <script src="../assets/js/jsbarcode.all.min.js"></script>
   <style>
     .amount {
       font-family: var(--font-head);
@@ -81,23 +80,21 @@
 <body>
 
 <!-- NAV -->
-<nav class="nav">
-  <div class="container">
-    <div class="nav__inner">
-      <a class="nav__brand" href="index.html">
-        <img src="assets/img/icon.png" alt="Pfandly icon">
-        Pfandly
-      </a>
-      <div class="nav__links">
-    <a href="index.html#how">How it works</a>
-    <a href="index.html#features">Features</a>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privacy</a>
-    <a class="btn btn--primary" href="index.html#get">Get the app</a>
-  </div>
+<nav class="nav"><div class="container nav__inner">
+  <a class="nav__brand" href="../index.html"><img src="../assets/img/icon.png" alt="Pfandly logo">Pfandly</a>
+  <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="navmenu"><span></span></button>
+  <div class="nav__links" id="navmenu">
+    <a href="../index.html#how" data-i18n="nav.how">How it works</a>
+    <a href="../index.html#features" data-i18n="nav.features">Features</a>
+    <a href="../support-en.html" data-nav-support data-i18n="nav.support">Support</a>
+    <a href="../privacy.html" data-i18n="nav.privacy">Privacy</a>
+    <a class="btn btn--primary" href="../index.html#get" data-i18n="nav.get">Get the app</a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
     </div>
   </div>
-</nav>
+</div></nav>
 
 <!-- MAIN -->
 <main>
@@ -106,7 +103,7 @@
     <!-- BON CARD (shown when fragment is valid) -->
     <div id="bon-card" class="card">
       <div style="text-align:center;">
-        <span class="pill">A friend sent you a Pfand 🍾</span>
+        <span class="pill" data-i18n="claim.pill">A friend sent you a Pfand 🍾</span>
         <div class="amount" id="bon-amount">€0.00</div>
         <p class="bon-meta" id="bon-meta">from <strong id="bon-store"></strong></p>
       </div>
@@ -116,29 +113,29 @@
         <div id="barcode-fallback" class="barcode-fallback hidden"></div>
       </div>
 
-      <p class="redeem-caption">Show this barcode at any self-checkout to redeem the deposit.</p>
+      <p class="redeem-caption" data-i18n="claim.redeem">Show this barcode at any self-checkout to redeem the deposit.</p>
 
       <div class="action-buttons">
-        <a class="btn btn--primary btn--lg" id="openApp" href="javascript:void(0)">Open in Pfandly</a>
+        <a class="btn btn--primary btn--lg" id="openApp" href="javascript:void(0)" data-i18n="claim.open">Open in Pfandly</a>
       </div>
 
-      <p class="get-app-label">Don't have the app? Get Pfandly to save &amp; manage it.</p>
+      <p class="get-app-label" data-i18n="claim.getlabel">Don't have the app? Get Pfandly to save &amp; manage it.</p>
 
       <div class="badges badges--center">
         <!-- App Store -->
         <a class="badge" href="javascript:void(0)" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <span>
-            <small>Download on the</small>
-            <strong>App Store</strong>
+            <small data-i18n="badge.appstore.small">Download on the</small>
+            <strong data-i18n="badge.appstore.strong">App Store</strong>
           </span>
         </a>
         <!-- Google Play -->
         <a class="badge" href="https://play.google.com/store/apps/details?id=com.wyo.pfandly" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.35.2.74.24 1.1.14l.06-.03 10.5-6.07-2.3-2.3-9.36 8.26zm-1.1-20.5C1.93 3.6 2 3.97 2.2 4.27l9.44 9.44-2.28 2.28L2.08 5.54c-.2-.3-.18-.67.0-1.28zM20.3 10.3l-2.15-1.24L15.6 11.6l2.28 2.28 2.44-1.41c.7-.4.7-1.77-.02-2.17zM4.28.1C3.92 0 3.53.04 3.18.24L12.54 9.6l2.3-2.3L4.34.13l-.06-.03z"/></svg>
           <span>
-            <small>Get it on</small>
-            <strong>Google Play</strong>
+            <small data-i18n="badge.play.small">Get it on</small>
+            <strong data-i18n="badge.play.strong">Google Play</strong>
           </span>
         </a>
       </div>
@@ -147,33 +144,25 @@
     <!-- ERROR CARD (shown on bad/missing fragment) -->
     <div id="error-card" class="card" style="text-align:center;">
       <div class="chip" style="margin-inline:auto;">⚠️</div>
-      <h2 style="margin-bottom:.5rem;">This link looks broken</h2>
-      <p class="muted">The link appears to be empty or invalid. Ask your friend to share it again from the Pfandly app.</p>
-      <a class="btn btn--primary btn--lg" href="index.html" style="margin-top:1rem;">Go to Pfandly</a>
+      <h2 style="margin-bottom:.5rem;" data-i18n="claim.err.t">This link looks broken</h2>
+      <p class="muted" data-i18n="claim.err.b">The link appears to be empty or invalid. Ask your friend to share it again from the Pfandly app.</p>
+      <a class="btn btn--primary btn--lg" href="../index.html" style="margin-top:1rem;" data-i18n="claim.err.btn">Go to Pfandly</a>
     </div>
 
   </div>
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__inner">
-      <a class="nav__brand" href="index.html">
-        <img src="assets/img/icon.png" alt="Pfandly icon">
-        Pfandly
-      </a>
-      <nav class="footer__links">
-        <a href="index.html">Home</a>
-        <a href="support.html">Support</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="mailto:support@pfandlybon.com">Contact</a>
-      </nav>
-      <small>Made with ❤️ in Berlin · © 2026 Pfandly</small>
-    </div>
+<footer class="footer"><div class="container footer__inner">
+  <small data-i18n="foot.made">Made with ❤️ in Berlin · © 2026 Pfandly</small>
+  <div class="footer__links">
+    <a href="../index.html" data-i18n="foot.home">Home</a>
+    <a href="../support-en.html" data-nav-support data-i18n="foot.support">Support</a>
+    <a href="../privacy.html" data-i18n="foot.privacy">Privacy</a>
+    <a href="../impressum.html" data-i18n="foot.impressum">Impressum</a>
+    <a href="mailto:support@pfandlybon.com" data-i18n="foot.contact">Contact</a>
   </div>
-</footer>
+</div></footer>
 
 <script>
   // Step 1: Read location.hash, strip leading '#'.
@@ -207,16 +196,9 @@
         showError();
       } else {
 
-        // Step 4: Fill in the amount, store, and optional metadata
-        var amountFmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(bon.v);
-        document.getElementById('bon-amount').textContent = amountFmt;
-        document.getElementById('bon-store').textContent  = bon.s;
-
-        var metaParts = ['from  ']; // thin separator — set via DOM below
-        var metaEl    = document.getElementById('bon-meta');
-        metaEl.innerHTML = 'from <strong>' + escHtml(bon.s) + '</strong>';
-        if (bon.n) metaEl.innerHTML += ' &nbsp;·&nbsp; ' + bon.n + ' bottle' + (bon.n !== 1 ? 's' : '');
-        if (bon.d) metaEl.innerHTML += ' &nbsp;·&nbsp; ' + escHtml(bon.d);
+        // Step 4: amount + meta, rendered via PfI18n so it follows EN/DE.
+        window.__bon = bon; // stash for re-render on language switch
+        renderBonMeta();
 
         // Step 5: Render barcode
         var fmtMap = {
@@ -263,6 +245,23 @@
       showError();
     }
   }
+
+  // Build the amount + "from STORE · N bottles · date" line in the active language.
+  function renderBonMeta() {
+    var bon = window.__bon; if (!bon) return;
+    var lang = (window.PfI18n && PfI18n.lang) || "en";
+    var t = (window.PfI18n && PfI18n.t) || function (k) { return k; };
+    var loc = lang === "de" ? "de-DE" : "en-IE"; // both euro; en-IE => "€3.25"
+    document.getElementById("bon-amount").textContent =
+      new Intl.NumberFormat(loc, { style: "currency", currency: "EUR" }).format(bon.v);
+    var meta = document.getElementById("bon-meta");
+    var html = t("claim.from") + " <strong>" + escHtml(bon.s) + "</strong>";
+    if (bon.n) html += " &nbsp;·&nbsp; " + bon.n + " " + t(bon.n === 1 ? "claim.bottle" : "claim.bottles");
+    if (bon.d) html += " &nbsp;·&nbsp; " + escHtml(bon.d);
+    meta.innerHTML = html;
+  }
+  // Re-render the dynamic line whenever the user flips EN/DE.
+  window.PfOnLangChange = function () { renderBonMeta(); };
 
   // Minimal HTML-escape helper (for store name / date coming from the URL)
   function escHtml(str) {

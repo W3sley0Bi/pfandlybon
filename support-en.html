@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var d=window.SITE_DEPTH||0,r="/";if(location.protocol==="file:"){r=d>0?Array(d+1).join("../"):"./";}else if(location.hostname.slice(-10)===".github.io"){var s=location.pathname.split("/")[1]||"";r=s?"/"+s+"/":"/";}document.write("<base href=""+r+"">");})();</script>
 <title>Support (English) — Pfandly</title>
 <meta name="description" content="Full English help guide for the Pfandly bottle-deposit wallet app. Learn how to scan, save, and redeem Pfandbons.">
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/site.js"></script>
 <meta property="og:title" content="Support (English) — Pfandly">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pfandlybon.com/support-en.html">
@@ -18,12 +18,17 @@
 
 <nav class="nav"><div class="container nav__inner">
   <a class="nav__brand" href="index.html"><img src="assets/img/icon.png" alt="Pfandly logo">Pfandly</a>
-  <div class="nav__links">
-    <a href="index.html#how">How it works</a>
-    <a href="index.html#features">Features</a>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privacy</a>
-    <a class="btn btn--primary" href="index.html#get">Get the app</a>
+  <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="navmenu"><span></span></button>
+  <div class="nav__links" id="navmenu">
+    <a href="index.html#how" data-i18n="nav.how">How it works</a>
+    <a href="index.html#features" data-i18n="nav.features">Features</a>
+    <a href="support-en.html" data-nav-support data-i18n="nav.support">Support</a>
+    <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+    <a class="btn btn--primary" href="index.html#get" data-i18n="nav.get">Get the app</a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="de">DE</button>
+    </div>
   </div>
 </div></nav>
 
@@ -242,13 +247,13 @@
 </main>
 
 <footer class="footer"><div class="container footer__inner">
-  <small>Made with ❤️ in Berlin · © 2026 Pfandly</small>
+  <small data-i18n="foot.made">Made with ❤️ in Berlin · © 2026 Pfandly</small>
   <div class="footer__links">
-    <a href="index.html">Home</a>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="impressum.html">Impressum</a>
-    <a href="mailto:support@pfandlybon.com">Contact</a>
+    <a href="index.html" data-i18n="foot.home">Home</a>
+    <a href="support-en.html" data-nav-support data-i18n="foot.support">Support</a>
+    <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+    <a href="impressum.html" data-i18n="foot.impressum">Impressum</a>
+    <a href="mailto:support@pfandlybon.com" data-i18n="foot.contact">Contact</a>
   </div>
 </div></footer>
 </body></html>
