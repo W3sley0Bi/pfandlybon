@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pfandlybon.com/</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://pfandlybon.com/support.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pfandlybon.com/support-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pfandlybon.com/support-de.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pfandlybon.com/support.html"/>
   </url>
   <url>
     <loc>https://pfandlybon.com/support-en.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pfandlybon.com/support-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pfandlybon.com/support-de.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pfandlybon.com/support.html"/>
   </url>
   <url>
     <loc>https://pfandlybon.com/support-de.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pfandlybon.com/support-en.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pfandlybon.com/support-de.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pfandlybon.com/support.html"/>
   </url>
   <url>
     <loc>https://pfandlybon.com/privacy.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
