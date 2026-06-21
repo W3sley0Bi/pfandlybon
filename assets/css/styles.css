@@ -358,6 +358,17 @@ p { margin: 0 0 1rem; }
 .footer__links a { color: var(--grey); font-size: .9rem; }
 .footer small { color: var(--grey); }
 
+/* ----- changelog ----- */
+.release { margin: 1.5rem 0; }
+.release__head { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem .9rem; margin-bottom: 1rem; }
+.release__head h2 { margin: 0; padding: 0; border-top: 0; font-size: 1.4rem; }
+.release__date { color: var(--grey); font-size: .9rem; }
+.release__copy { margin-left: auto; cursor: pointer; font-size: .85rem; padding: .45rem 1rem; }
+.release__copy.is-copied { background: var(--green); color: #fff; border-color: var(--green); }
+.release ul { margin: 0; padding-left: 1.2rem; }
+.release li { margin: .45rem 0; }
+.release li strong { font-family: var(--font-head); }
+
 /* utilities */
 .stack > * + * { margin-top: 1rem; }
 .flex { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }

@@ -42,6 +42,7 @@
       'nav.features': 'Features',
       'nav.support': 'Support',
       'nav.privacy': 'Privacy',
+      'nav.changelog': 'What’s new',
       'nav.get': 'Get the app',
       'foot.home': 'Home',
       'foot.support': 'Support',
@@ -126,6 +127,7 @@
       'nav.features': 'Funktionen',
       'nav.support': 'Hilfe',
       'nav.privacy': 'Datenschutz',
+      'nav.changelog': 'Neuigkeiten',
       'nav.get': 'App holen',
       'foot.home': 'Start',
       'foot.support': 'Hilfe',
@@ -250,6 +252,15 @@
       supportLinks[s].setAttribute('href', prefix + target);
     }
 
+    // Same treatment for the "What's new" (changelog) links.
+    var clTarget = lang === 'de' ? 'changelog-de.html' : 'changelog-en.html';
+    var clLinks = document.querySelectorAll('[data-nav-changelog]');
+    for (var c = 0; c < clLinks.length; c++) {
+      var curC = clLinks[c].getAttribute('href') || '';
+      var prefixC = curC.replace(/changelog-(en|de)\.html$/, '');
+      clLinks[c].setAttribute('href', prefixC + clTarget);
+    }
+
     // reflect active language on the switch
     var btns = document.querySelectorAll('.lang-switch [data-lang]');
     for (var b = 0; b < btns.length; b++) {
@@ -268,7 +279,14 @@
     // Support pages are separate documents — navigate instead of re-render.
     if (locked) {
       if (choice !== locked) {
-        window.location.href = (choice === 'de') ? 'support-de.html' : 'support-en.html';
+        // Derive the sibling from the current filename so any
+        // "<base>-en/-de.html" pair (support, changelog, …) works.
+        var path = window.location.pathname;
+        if (/-(?:en|de)\.html$/.test(path)) {
+          window.location.href = path.replace(/-(?:en|de)\.html$/, '-' + choice + '.html');
+        } else {
+          window.location.href = (choice === 'de') ? 'support-de.html' : 'support-en.html';
+        }
         return;
       }
     }
